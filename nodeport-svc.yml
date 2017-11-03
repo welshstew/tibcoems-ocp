@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Tibco EMS node port
+  creationTimestamp: null
+  labels:
+    application: tibcoems
+    group: com.nullendpoint
+    project: tibcoems-ocp
+    provider: fabric8
+    version: 1.0.0-SNAPSHOT
+  name: tibcoems-np
+spec:
+  ports:
+  - nodePort: 31222
+    port: 7222
+    protocol: TCP
+    targetPort: 7222
+  selector:
+    deploymentConfig: tibcoems
+    group: com.nullendpoint
+    project: tibcoems-ocp
+    provider: fabric8
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

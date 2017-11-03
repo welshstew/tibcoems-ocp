@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Tibco EMS SSL node port
+  creationTimestamp: null
+  labels:
+    application: tibcoems
+    group: com.nullendpoint
+    project: tibcoems-ocp
+    provider: fabric8
+    version: 1.0.0-SNAPSHOT
+  name: tibcoems-snp
+spec:
+  ports:
+  - nodePort: 31243
+    port: 7243
+    protocol: TCP
+    targetPort: 7243
+  selector:
+    deploymentConfig: tibcoems
+    group: com.nullendpoint
+    project: tibcoems-ocp
+    provider: fabric8
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

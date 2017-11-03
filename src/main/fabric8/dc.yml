@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    application: ${APPLICATION_NAME}
+  name: ${APPLICATION_NAME}
+spec:
+  replicas: 1
+  selector:
+    deploymentConfig: ${APPLICATION_NAME}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        application: ${APPLICATION_NAME}
+        deploymentConfig: ${APPLICATION_NAME}
+      name: ${APPLICATION_NAME}
+    spec:
+      containers:
+      - env:
+        - name: SOME_VALUE
+          value: hello
+        image: ${APPLICATION_NAME}
+        imagePullPolicy: Always
+        name: ${APPLICATION_NAME}
+        ports:
+        - containerPort: 7222
+          name: emstcp
+          protocol: TCP
+        - containerPort: 7243
+          name: emsssl
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/opt/ems/log
+          name: ${APPLICATION_NAME}-log
+        - mountPath: /var/opt/ems/data
+          name: ${APPLICATION_NAME}-data
+        - mountPath: /var/opt/ems/certs
+          name: ${APPLICATION_NAME}-certs
+          readOnly: true
+      serviceAccountName: ems-service-account
+      terminationGracePeriodSeconds: 60
+      volumes:
+      - name: ${APPLICATION_NAME}-certs
+        secret:
+          secretName: ${EMS_SECRET_NAME}
+      - name: ${APPLICATION_NAME}-log
+        persistentVolumeClaim:
+          claimName: ${APPLICATION_NAME}-log
+      - name: ${APPLICATION_NAME}-data
+        persistentVolumeClaim:
+          claimName: ${APPLICATION_NAME}-data
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - ${APPLICATION_NAME}
+      from:
+        kind: ImageStreamTag
+        name: ${APPLICATION_NAME}:latest
+    type: ImageChange
+  - type: ConfigChange

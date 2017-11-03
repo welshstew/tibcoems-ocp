@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Tibco EMS ssl port
+  labels:
+    application: ${APPLICATION_NAME}
+  name: ${APPLICATION_NAME}-ssl
+spec:
+  ports:
+  - port: 7243
+    targetPort: 7243
+  selector:
+    deploymentConfig: ${APPLICATION_NAME}

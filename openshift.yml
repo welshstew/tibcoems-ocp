@@ -1,0 +1,256 @@
+---
+apiVersion: v1
+kind: Template
+metadata:
+  annotations:
+    maven.fabric8.io/app-catalog: "true"
+  labels:
+    provider: fabric8
+    project: tibcoems-ocp
+    version: 1.0.0-SNAPSHOT
+    group: com.nullendpoint
+  name: tibco-ems
+objects:
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    annotations:
+      description: Certificates for Tibco EMS
+    labels:
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${EMS_SECRET_NAME}
+  data:
+    server.cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUR0VENDQXAyZ0F3SUJBZ0lKQUpuK2NjTTR4MEFFTUEwR0NTcUdTSWIzRFFFQkJRVUFNRVV4Q3pBSkJnTlYKQkFZVEFrRlZNUk13RVFZRFZRUUlFd3BUYjIxbExWTjBZWFJsTVNFd0h3WURWUVFLRXhoSmJuUmxjbTVsZENCWAphV1JuYVhSeklGQjBlU0JNZEdRd0hoY05NVGN3TXpBMk1UTXdOVEkxV2hjTk1UZ3dNekEyTVRNd05USTFXakJGCk1Rc3dDUVlEVlFRR0V3SkJWVEVUTUJFR0ExVUVDQk1LVTI5dFpTMVRkR0YwWlRFaE1COEdBMVVFQ2hNWVNXNTAKWlhKdVpYUWdWMmxrWjJsMGN5QlFkSGtnVEhSa01JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQgpDZ0tDQVFFQW5DQnJvV3NLY2w4eTYvc2NNU1dSMTJnTjg2endiQUV5TmQyWVRRcitFZUdycCtFRlRwQU55em5RCmNsTWg2aERRMDFFSUpJN3BFVThZa3FoWThFZVZZeGF3NHc3bXRtS1BacVBhczg4VU5HUjBWaEFjaVdlODNQdUgKWFVwWHhoOENKNnJTV1EzRThJR3FMbzZGaTg4dkxUUVdxdjI1aTdHVFJZYnE1enR0NmJxaTlLK0IzRmdGR2Z6RwpHeFY5SGJGVUNVRzVEMWtYMGtyVlM1bDlub21sa1dHaDZUaEpkcmJORjlVM3dTd1RVY1ZvWDgydEh4SC9ablJtCkRnSmJJS2s4NEcvKzFLWGpIeVNkUjFUZ2I3ZkhhU0UvMXpHZEwrU2tjR1NVMmRoNU5LNk1XZTBVOTkwdGRrSGkKaWt1alUxT2dFL2hhWlZKTnBzNEY0bXI3Q0FtUzh3SURBUUFCbzRHbk1JR2tNQjBHQTFVZERnUVdCQlJEZzJsdApDU3hGVU1tNVkzTlhRLzFraHlXRHhUQjFCZ05WSFNNRWJqQnNnQlJEZzJsdENTeEZVTW01WTNOWFEvMWtoeVdECnhhRkpwRWN3UlRFTE1Ba0dBMVVFQmhNQ1FWVXhFekFSQmdOVkJBZ1RDbE52YldVdFUzUmhkR1V4SVRBZkJnTlYKQkFvVEdFbHVkR1Z5Ym1WMElGZHBaR2RwZEhNZ1VIUjVJRXgwWklJSkFKbitjY000eDBBRU1Bd0dBMVVkRXdRRgpNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUZCUUFEZ2dFQkFKU1pkWHI4cFRBVFFIV1RUbzFVNXpWRnlyMW1ienJjCkI5SWE0UmRYOTQxaVJXU3MrVmRQOTVBTzdTT3RpQngzVnBrNGV5a1ZEWFkwNDQ4U3ZoSHBHWk5zMmlYcTRxSWkKck1RaElVS1hiZTZqNVlWalg2R1RPTGpyeVNWd0p4b3M5Z3ptQkdTamwvdmFrOUE0QXFIOFBWakw5WkpobEROMAp1RTdRL2lDcUlNenY0RS9yVjM2a2MvU0t2d3U0c3ZZOVZJVDdJdW9HSFh2WGliZGNSMy9DK0lwR1VaUEovYm9DClB2SXRSOGNLNHdLNUE3dzJTNzRmNGl1RStMRnIycmFnUHcrZDBoVkE0d28xeUpoUHI3aGtiUmd1bmFZN1BjaFQKdmlVK0pWM2RabTJmK3RyYTRhM3dOenZRQ0JzQ0NpNFFiU2xRanZRU3hWT3pFNlRvNTBlb1E4TT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server.key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpQcm9jLVR5cGU6IDQsRU5DUllQVEVECkRFSy1JbmZvOiBERVMtRURFMy1DQkMsMkM0MTQzNDUzRDY1MzVFNwoKQ3RKWnRiUThsdHBTckVaWDYxTEdJbmVGbXozQi9FelB3MWUxL0N0YXVVajk3dU1zbGxrSU5HV1B5Q2VuTDZEMApSK0YzZVZKaWlaQUJaNjZHQi9PNVRVUXorRlhPQnkyYXg0N09ncmJ6NDdNQkhScnNibFJVMGc2U2FqUG9LL2lECk1iQlUrTDF1T29wU2YwSlY4eG1mS1NvSmtuVysrUW1wbFF5MzBHamxlY2tYSnF2TnpGNnZYbGZEdzFDUzBSUksKK2ZqOFA1Sk4zVmRJY21NOEdPeE1LbWUzUzZqUGk1TldEQ1FrTWV6ckhqaVIzNzFSbVFQUDFQU3UyQmhlWVlCNgo0a3d5SWI3ZGdycm0wcTVLN093ZHUzaytENnhzV0tBeGxOZDRNMDc5NjNEbkRpejhOckdHeWhYbE5KNUxudVVICjJjVm5GMjdiVCtDaFNyWXh1cFlFdW1iZ0I3MHZSSW1XSXNnb1A0SHdmUEk1Uk04ZUJvb2ZnNERCYlZGN2dpNzUKdkxza1d2OWMvZTBqay9VeEYrU29GcWQ2Mnk0SVZJdTlxcHl4djlKZ0NXZnBTblp0MFJ2RFczRUV0VGZuRGw2RApiOHJOYXEvN04vVzFmZ3RHQzZXTml3UHg2d2pmR0lLMW9MamZFK3h2UFlRYXNlRm1JeWNsZThlUkVEdlpHT3cwCkhBZ2dZRU9vZjc3K3ZrQ1JjODE2K0NvMzg3SzJjcFlvd1Q5YnByMzUvMDl2Qi9YL1JnVmNhb1dBQUFxMytYMlUKS2dCMm5sZ24rYWE5SFhVSnVBUWtSSEhOeXVYZUV4ZGxucHJXRHRRc2wwak9MMUd6UHlUWGpUZG9vREJYeGdpUwpMdGhtaHpZSTZxL3QyK1FlNGxWMFYyTmgrdTA2U1A5bmVnSjRyZWJHWWc1dkZ3Wm1aNElJOEVmMHVTRHlJdWZKCkEwcTNRYkV0QnhRNVlodE4xQm9CbFN2NDFQYStPbzNzYkhrK1lCaVZkM3JuYkxJRVlYZjYxNERjNnlnK2hmVDMKU3VYUlFCalF1dUJWMEhkcjZSR0w5elZiOEJkNTJvZS9BTEVlOFpmMjZmWlZDMWpjbldwcU1GL2x4RmtQclkzTgo3ZklBVDVzNEduQ2FGK0dnQ01nOGwyeTd6NnVZZitNdWJQY3hxclYrYkVrekRVc0dBVVdyQ0dITGZOZml6ci9RCmF1V0pwdkdvLzhTT1BkV1FHenNBMzZPSzk2QUVnQWViT1M0OFNBR0ZKYVN2SDFJQ1htdzJVdnptcFR1aGVXTXMKbndjRGlsSC9FYXp0RnFZRjF4ZkpxSEtZQ1BIMVdYN2I2U2o2UFJGZVZaaFFkU0tsbXRsaG9EcnhGbDJWeUtGdwpWMzlBSmIxaHFJdHBPS3M5S1ZSMDdnMmMyK1ZLVS82UFJzY0g2YWttQXF1eWVxUlkvUmhMRGpYTUlmSGpnU1RPCmtSWTVkcUdUam5PMkFUZkQwRXNKRmR0OFpZMWoxdHZXKzRwT3B5Q3VHT0xNQ0djSVEyQTBodEhOUit0dWJlMzMKWUVOdm9uaFgyWWkzL1lCVkd0TEgvKzViT01sengwY0RRT2xBcHJnTEJvZ2pjRG5kNEZsQ0dnSGRreklRdzJaZwpsRjJXL0NNbmh1SkN0djNOOXM2U041Y2xPRSt0M0tRMVRxa0JsbmZFODdBYmp0QkdqekNPWnFNeVArVi8xa0s0CjNYMEg0RUJabUNDbEZraXA1WFZvYWRsV2kxNXhTZXRRMnF6WlE2ZEdwWjR4V0xxa0x3Z2RzL2lsUXRZZ0RRSlYKSmdJS1NqcHFvUFZWQmZNQURVYTZCMWRXQklCems4WFltNjBtcDdrYXkvR040TGtLSUFUcUlaMXRMQzFMZU5RVgpHZzJYQTVIQ29xMVRlSDlId0Q3Z3g0cWlGMUlwVFBLRXprN1A0bW5DYWgvWmdMZUQ0SkVMbGNSVE1tTEpIWC90ClFwQWdjMVNHbGxHZ2tqZ2R0R2x4V2xuT0pmeDNkRHNGc2tMWkJheDI4dEk4RVJCSndFSXYxUkdKYXRVelpPLysKd1owRXpubTB4ZU1leUdpRVRmNmEwaGRSd001ZXRmYlE3ejEwWlFuR2pSaEtoMmpTV2cyMVh3PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0K
+  type: Opaque
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    labels:
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ems-service-account
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: Tibco EMS ssl port
+      fabric8.io/git-commit: 939acd2bec1c8644e1b15e0f04729f696d9ebf0d
+      fabric8.io/git-branch: master
+    labels:
+      application: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}-ssl
+  spec:
+    ports:
+    - port: 7243
+      targetPort: 7243
+    selector:
+      deploymentConfig: ${APPLICATION_NAME}
+      project: tibcoems-ocp
+      provider: fabric8
+      group: com.nullendpoint
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: Tibco EMS tcp port
+      fabric8.io/git-commit: 939acd2bec1c8644e1b15e0f04729f696d9ebf0d
+      fabric8.io/git-branch: master
+    labels:
+      application: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}-tcp
+  spec:
+    ports:
+    - port: 7222
+      targetPort: 7222
+    selector:
+      deploymentConfig: ${APPLICATION_NAME}
+      project: tibcoems-ocp
+      provider: fabric8
+      group: com.nullendpoint
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}-data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: ${VOLUME_CAPACITY}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}-log
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: ${VOLUME_CAPACITY}
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${APPLICATION_NAME}:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: src/main/docker
+      git:
+        uri: https://github.com/welshstew/tibcoems-ocp.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: rhel7:latest
+          namespace: openshift
+      type: Docker
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+      provider: fabric8
+      project: tibcoems-ocp
+      version: 1.0.0-SNAPSHOT
+      group: com.nullendpoint
+    name: ${APPLICATION_NAME}
+  spec:
+    replicas: 1
+    selector:
+      deploymentConfig: ${APPLICATION_NAME}
+    strategy:
+      rollingParams:
+        timeoutSeconds: 10800
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          application: ${APPLICATION_NAME}
+          deploymentConfig: ${APPLICATION_NAME}
+          provider: fabric8
+          project: tibcoems-ocp
+          version: 1.0.0-SNAPSHOT
+          group: com.nullendpoint
+        name: ${APPLICATION_NAME}
+      spec:
+        containers:
+        - env:
+          - name: SOME_VALUE
+            value: hello
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ${APPLICATION_NAME}
+          imagePullPolicy: Always
+          name: ${APPLICATION_NAME}
+          ports:
+          - containerPort: 7222
+            name: emstcp
+            protocol: TCP
+          - containerPort: 7243
+            name: emsssl
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 9779
+            name: prometheus
+            protocol: TCP
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          securityContext:
+            privileged: false
+          volumeMounts:
+          - mountPath: /var/opt/ems/log
+            name: ${APPLICATION_NAME}-log
+          - mountPath: /var/opt/ems/data
+            name: ${APPLICATION_NAME}-data
+          - mountPath: /var/opt/ems/certs
+            name: ${APPLICATION_NAME}-certs
+            readOnly: true
+        serviceAccountName: ems-service-account
+        terminationGracePeriodSeconds: 60
+        volumes:
+        - name: ${APPLICATION_NAME}-certs
+          secret:
+            secretName: ${EMS_SECRET_NAME}
+        - name: ${APPLICATION_NAME}-log
+          persistentVolumeClaim:
+            claimName: ${APPLICATION_NAME}-log
+        - name: ${APPLICATION_NAME}-data
+          persistentVolumeClaim:
+            claimName: ${APPLICATION_NAME}-data
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - ${APPLICATION_NAME}
+        from:
+          kind: ImageStreamTag
+          name: ${APPLICATION_NAME}:latest
+      type: ImageChange
+    - type: ConfigChange
+parameters:
+- description: The name for the application.
+  name: APPLICATION_NAME
+  required: true
+  value: tibcoems
+- description: Size of the data and log volume
+  name: VOLUME_CAPACITY
+  required: true
+  value: 512Mi
+- description: The name of the secret containing the certificate files
+  name: EMS_SECRET_NAME
+  required: true
+  value: ems-secrets

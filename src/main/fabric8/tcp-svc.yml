@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Tibco EMS tcp port
+  labels:
+    application: ${APPLICATION_NAME}
+  name: ${APPLICATION_NAME}-tcp
+spec:
+  ports:
+  - port: 7222
+    targetPort: 7222
+  selector:
+    deploymentConfig: ${APPLICATION_NAME}

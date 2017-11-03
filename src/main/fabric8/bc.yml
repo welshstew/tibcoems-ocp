@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: ${APPLICATION_NAME}
+  name: ${APPLICATION_NAME}
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: ${APPLICATION_NAME}:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: src/main/docker
+    git:
+      uri: ssh://git@gitlab.consulting.redhat.com:2222/swinches/tibcoems-ocp.git
+    sourceSecret:
+      name: sshsecret
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rhel7:latest
+        namespace: openshift
+    type: Docker
